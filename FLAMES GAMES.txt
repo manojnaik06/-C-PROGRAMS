@@ -1,0 +1,117 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        String a = "aaabbbbbccdddaaa";
+        int c = 1;
+        String res = "";
+
+        for (int i = 0; i < a.length(); i++) {
+            if (i + 1 < a.length() && a.charAt(i) == a.charAt(i + 1)) {
+                c++;
+            } else {
+                res = res + a.charAt(i) + c;
+                c = 1;
+            }
+        }
+        
+        System.out.print(res);
+    }
+}
+
+
+class Solution {
+    public int myAtoi(String s) {
+        int i=0, sign=1,result=0;
+        while(i < s.length() && s.charAt(i) == ' '){
+            i++;
+        }
+        if(i < s.length() && (s.charAt(i) == '-' || s.charAT(i) == '+'))
+           sign = (s.charAt(i) == '-') ? -1 : 1;
+           i++;
+    }
+    while (i < s.length() && Character.isDigit(s.charAt(i))) {
+        int digit = s.charAt(i)-'0';
+        if(result > (INteger.Max_Value-digit) / 10) {
+            return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        }
+        return = result * 10+digit;
+        i++;
+    }
+    return result * sign;
+}
+}    
+
+
+
+
+
+import java.util.Scanner;
+
+public class FlamesGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the first name:");
+        String name1 = scanner.nextLine().toLowerCase().replaceAll("\\s+", "");
+
+        System.out.println("Enter the second name:");
+        String name2 = scanner.nextLine().toLowerCase().replaceAll("\\s+", "");
+
+        int commonCount = countCommonCharacters(name1, name2);
+        int totalCount = name1.length() + name2.length() - 2 * commonCount;
+
+        String flames = "FLAMES";
+        while (flames.length() > 1) {
+            int index = (totalCount % flames.length()) - 1;
+            if (index >= 0) {
+                flames = flames.substring(0, index) + flames.substring(index + 1);
+            } else {
+                flames = flames.substring(0, flames.length() - 1);
+            }
+        }
+
+        char relationship = flames.charAt(0);
+        String result = getRelationship(relationship);
+        System.out.println("The relationship between the two names is: " + result);
+    }
+
+    private static int countCommonCharacters(String name1, String name2) {
+        int[] charCount = new int[26];
+
+        for (char c : name1.toCharArray()) {
+            charCount[c - 'a']++;
+        }
+        for (char c : name2.toCharArray()) {
+            charCount[c - 'a']++;
+        }
+
+        int commonCount = 0;
+        for (int count : charCount) {
+            if (count > 1) {
+                commonCount++;
+            }
+        }
+
+        return commonCount;
+    }
+
+    private static String getRelationship(char relationship) {
+        switch (relationship) {
+            case 'F':
+                return "Friends";
+            case 'L':
+                return "Lovers";
+            case 'A':
+                return "Affectionate";
+            case 'M':
+                return "Marriage";
+            case 'E':
+                return "Enemies";
+            case 'S':
+                return "Siblings";
+            default:
+                return "Unknown";
+        }
+    }
+}
