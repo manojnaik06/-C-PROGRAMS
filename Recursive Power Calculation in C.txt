@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int cal(int b, int p) {
+    if (p == 1) 
+        return 1;
+    return b * cal(b, p - 1);
+}
+
+int main() {
+    int b, p;
+    printf("Base: ");
+    scanf("%d", &b);  
+    printf("Power: ");
+    scanf("%d", &p);  
+    printf("Result: %d\n", cal(b, p));  
+    return 0;
+}
